@@ -53,7 +53,7 @@ const getSearchSuggestions = async () => {
   }, 300)
 }
 onMounted(() => {
-  getCityWeatherData('hyderabad')
+  // getCityWeatherData('hyderabad')
 })
 
 const FetchErrorMessage = ref(null)
@@ -112,14 +112,12 @@ const getCityWeatherData = async (searchResult) => {
     position: absolute;
     background-color: rgb(254, 254, 254);
     color: #8D9AA9;
-    width: 90%;
+    width: 1040px;
     --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     padding: 8px 4px;
-    top: 120px;
     list-style-type: none;
-
     .suggested {
       padding: 8px 0px;
       cursor: pointer;
