@@ -270,7 +270,6 @@
             .dayWiseBtns {
                 display: flex;
                 align-items: center;
-                // justify-content: space-between;
                 button {
                     width: auto;
                     height: 38px;
@@ -284,10 +283,6 @@
                     font-size: 14px;
                     color: #637381;
                 }
-
-                // button:focus {
-                //     background: #D8ECFF;
-                // }
                 button:first-child {
                     border-radius: 4px 0px 0px 4px;
                     
@@ -313,15 +308,12 @@
                 button:last-child{
                     border-radius: 0px 4px 4px 0px;
                 }
-                button:focus{
-                    background: #D8ECFF;
-                }
-
+    
             }
         }
       
     }
     .active{
-            background: #D8ECFF !important;
+            background: #D8ECFF;
         }
     </style>
