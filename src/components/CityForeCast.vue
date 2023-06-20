@@ -57,7 +57,7 @@
                         <button :class="isTable ? 'active' :'' " @click="isTable=true">
                             <img :src="table" alt="table.svg">
                         </button>
-                        <button  @click="isTable=false">
+                        <button :class="!isTable ? 'active' :'' "  @click="isTable=false">
                         <img :src="map" alt="table.svg">
                         </button>
                 </div>
@@ -226,7 +226,7 @@
                         font-style: normal;
                         font-weight: 400;
                         font-size: 14px;
-                        margin-top: -25px;
+                        margin-top: -15px;
                     }
                 }
             }
