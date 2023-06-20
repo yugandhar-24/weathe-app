@@ -7,7 +7,7 @@
                 </div>
                 <div class="tabs">
                     <button :class="isFahren ? 'active' :'' "  class="Fahren" @click="isFahren = true">&deg;F </button>
-                    <button class="celcious" @click="isFahren = false">&deg;C</button>
+                    <button :class="!isFahren ? 'active' :'' " class="celcious" @click="isFahren = false">&deg;C</button>
                 </div>
             </div>
             <div class="cityCard">
@@ -314,6 +314,6 @@
       
     }
     .active{
-            background: #D8ECFF;
+            background: #D8ECFF !important;
         }
     </style>
