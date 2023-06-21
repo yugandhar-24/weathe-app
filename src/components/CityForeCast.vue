@@ -6,8 +6,8 @@
                         weatherData.location.region }}, {{ weatherData.location.country }}</span>
                 </div>
                 <div class="tabs">
-                    <button :class="isFahren ? 'active' :'' "  class="Fahren" @click="isFahren = true">&deg;F </button>
-                    <button :class="!isFahren ? 'active' :'' " class="celcious" @click="isFahren = false">&deg;C</button>
+                    <button :class="isFahren ? 'fahren' :'' "  class="Fahren" @click="isFahren = true">&deg;F </button>
+                    <button :class="!isFahren ? 'fahren' :'' " class="celcious" @click="isFahren = false">&deg;C</button>
                 </div>
             </div>
             <div class="cityCard">
@@ -163,11 +163,6 @@
                 .celcious {
                     border-radius: 0px 5px 5px 0px;
                 }
-
-                button:focus {
-                    background-color: #D8ECFF;
-                    color: #000000;
-                }
             }
         }
 
@@ -316,4 +311,8 @@
     .active{
             background: #D8ECFF !important;
         }
+     .fahren{
+            background: #D8ECFF !important;
+            color: #000000 !important;
+    }
     </style>

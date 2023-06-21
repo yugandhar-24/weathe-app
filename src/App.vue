@@ -1,23 +1,23 @@
 <template>
-  <div id="app" >
-    <div class="search-container">
-      <input placeholder="Please Enter City Name, US Zip Code, Canada Postal Code, UK PostCode, ip, metar, etc."
-        type="text" v-model="searchQuery" @input="getSearchSuggestions">
-      <ul class="mapBoxContainer" v-if="mapBoxSearchResults">
-        <p v-if="searchError">Sorry, something went wrong, please try again.</p>
-        <p v-if="!searchError && mapBoxSearchResults.length === 0">No results match your query, try a different term.
-        </p>
-        <template v-else>
-          <li v-for="searchResult in mapBoxSearchResults" :key="searchResult.id" class="suggested"
-            @click="getCityWeatherData(searchResult.place_name)">
-            {{ searchResult.place_name }}
-          </li>
-        </template>
-      </ul>
-      <div class="loader" v-if="getData"></div>
-      <div class="errMsg" v-if="FetchErrorMessage && !CityweatherData">{{ FetchErrorMessage }}</div>
-    </div>
-    <CityForeCast v-if="CityweatherData" :weatherData="CityweatherData" />
+  <div id="app">
+      <div class="search-container">
+        <input placeholder="Please Enter City Name, US Zip Code, Canada Postal Code, UK PostCode, ip, metar, etc."
+          type="text" v-model="searchQuery" @input="getSearchSuggestions">
+        <ul class="mapBoxContainer" v-if="mapBoxSearchResults">
+          <p v-if="searchError">Sorry, something went wrong, please try again.</p>
+          <p v-if="mapBoxSearchResults.length === 0" class="errMsg">No results match your query, try a different term.
+          </p>
+          <template v-else>
+            <li v-for="searchResult in mapBoxSearchResults" :key="searchResult.id" class="suggested"
+              @click="getCityWeatherData(searchResult.place_name)">
+              {{ searchResult.place_name }}
+            </li>
+          </template>
+        </ul>
+        <div class="loader" v-if="getData"></div>
+        <div class="errMsg" v-if="FetchErrorMessage && !getData">The Forecast place you are Requesting is not available in our database.Try another Place Failed with status code 400</div>
+      </div>
+        <CityForeCast v-if="CityweatherData && !FetchErrorMessage && !mapBoxSearchResults" :weatherData="CityweatherData" />
   </div>
 </template>
 
@@ -53,10 +53,10 @@ const getSearchSuggestions = async () => {
   }, 300)
 }
 onMounted(() => {
-  // getCityWeatherData('hyderabad')
+  getCityWeatherData('hyderabad')
 })
 
-const FetchErrorMessage = ref(null)
+const FetchErrorMessage = ref(false)
 const getCityWeatherData = async (searchResult) => {
   getData.value = true
   searchQuery.value = ''
@@ -64,14 +64,20 @@ const getCityWeatherData = async (searchResult) => {
   const [city] = searchResult.split(",");
   console.log(searchResult)
   try {
-      const weatherData = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=7b410ee496cd47768ca120311231206&q=${city}&days=7&aqi=no&alerts=no`)
-      console.log(weatherData.data)
-      getData.value = false
-      CityweatherData.value = weatherData.data
-
+    const weatherData = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=7b410ee496cd47768ca120311231206&q=${city}&days=7&aqi=no&alerts=no`)
+    getData.value = false
+    CityweatherData.value = weatherData.data
+    FetchErrorMessage.value =false
+    console.log(CityweatherData)
   }
   catch (err) {
-    FetchErrorMessage.value = err.message
+    if(err.message)
+    {
+    FetchErrorMessage.value =true
+    }
+    else{
+    FetchErrorMessage.value =false
+    }
     console.log(err.message)
     getData.value = false
   }
@@ -152,4 +158,5 @@ const getCityWeatherData = async (searchResult) => {
   font-size: 20px;
   text-align: center;
   padding: 18px 8px;
-}</style>
+}
+</style>
