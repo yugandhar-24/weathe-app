@@ -112,6 +112,7 @@ const date=(time)=>{
 
 ::v-deep .md-table-head-label {
   color: #000000;
+ 
 }
 ::v-deep .md-table-cell-container{
   font-family: 'Inter';

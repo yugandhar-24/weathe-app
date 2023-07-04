@@ -64,7 +64,7 @@ const getCityWeatherData = async (searchResult) => {
   const [city] = searchResult.split(",");
   console.log(searchResult)
   try {
-    const weatherData = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=7b410ee496cd47768ca120311231206&q=${city}&days=7&aqi=no&alerts=no`)
+    const weatherData = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=b74fe3382562417a89e113331232706&q=${city}&days=7&aqi=no&alerts=no`)
     getData.value = false
     CityweatherData.value = weatherData.data
     FetchErrorMessage.value =false
